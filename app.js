@@ -37,18 +37,18 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    var returnObj = new Object();
+    /*var returnObj = new Object();
     returnObj.status = 500;
     returnObj.message = err.message;
     returnObj.flag = false;
     res.setHeader("Content-Type", "application/json;charset=utf-8");
     res.write(JSON.stringify(returnObj));
-    res.end();
-   /* res.status(err.status || 500);
+    res.end();*/
+    res.status(err.status || 500);
     res.render('error', {
       message: err.message,
       error: err
-    });*/
+    });
   });
 }
 
