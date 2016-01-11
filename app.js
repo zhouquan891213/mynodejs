@@ -27,7 +27,6 @@ app.use(controller);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('请求资源' + req.path + 'Not Found');
-  err.status = 404;
   next(err);
 });
 
@@ -38,7 +37,6 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.log("当前环境为：development");
-    res.status(err.status || 500);
     var retObj = {
       flag: false,
       message: err.message,
@@ -58,7 +56,6 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   console.log("当前环境为：production");
-  res.status(err.status || 500);
   var retObj = {
     flag: false,
     message: err.message
