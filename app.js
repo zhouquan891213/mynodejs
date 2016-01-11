@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.log("当前环境为：development");
-    res.status(err.status || 500)
+    res.status(err.status || 500);
     var retObj = {
       flag: false,
       message: err.message,
