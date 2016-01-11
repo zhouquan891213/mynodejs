@@ -1,11 +1,10 @@
-var redis = require("redis");
 var confUtil = require("../common/conf/confUtil");
 var redisUtil = require("../common/redis/redisUtil");
 
 function checkLogin(req, res, next){
     res.setHeader("Content-Type", confUtil.getContentType());
     var cookies = req.cookies;
-    console.log(JSON.stringify(cookies));
+    console.log("当前cookies信息:" + JSON.stringify(cookies));
     var reqPath = req.path;
     var loginUrl = confUtil.getLoginUrl();
     for(var i = 0; i < loginUrl.length; i ++){
@@ -22,14 +21,15 @@ function checkLogin(req, res, next){
                 return next(err);
             }
             if(data){
-                console.log(data);
+                console.log("从redis服务器获取登录用户信息:" + data);
+                req.userInfo = JSON.parse(data);
                 return next();
             }
             return next(new Error("用户登录信息已失效，请重新登录！"));
         });
-        return;
+    }else{
+        return next(new Error("用户未登录！"));
     }
-    return next(new Error("用户未登录！"));
 }
 
 module.exports = checkLogin;

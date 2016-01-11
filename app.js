@@ -40,7 +40,7 @@ if (app.get('env') === 'development') {
     var retObj = {
       flag: false,
       message: err.message,
-      error : err
+      error : err.body
     }
     res.write(JSON.stringify(retObj));
     res.end();
