@@ -7,7 +7,6 @@ module.exports = function(req, res, next){
     if(userName == password){
         console.log("登录成功，登录用户名：" + userName);
         res.setHeader("Set-Cookie", "sessionId=" + userName);
-        res.setHeader("Content-Type", "application/json;charset=utf-8");
         var retObj = {
             flag : true,
             message : "登录成功，当前用户：" + userName

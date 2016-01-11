@@ -18,3 +18,7 @@ module.exports.getActionMapping = function(name){
 module.exports.getRedisConf = function(){
     return sysConf.redis;
 }
+
+module.exports.getContentType = function(){
+    return sysConf.contentType;
+}

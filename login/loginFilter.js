@@ -3,6 +3,7 @@ var confUtil = require("../common/conf/confUtil");
 var redisUtil = require("../common/redis/redisUtil");
 
 function checkLogin(req, res, next){
+    res.setHeader("Content-Type", confUtil.getContentType());
     var cookies = req.cookies;
     console.log(JSON.stringify(cookies));
     var reqPath = req.path;
